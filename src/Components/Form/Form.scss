@@ -1,0 +1,171 @@
+$primary-color: #1d3557;
+$error-color: #e63946;
+$bg-color: #f1faee;
+$text-color: black;
+$color-white: #fff;
+$color-green: #8fffab;
+
+$border-radius: 4px;
+
+/* buttons */
+$--btn-primary-bg: var(--color-primary);
+$--btn-primary-hover: var(--color-primary-light);
+$--btn-primary-active: var(--color-primary-dark);
+$--btn-primary-label: var(--white);
+
+$--btn-secondary-bg: var(--gray-1);
+$--btn-secondary-active: var(--gray-2);
+$--btn-secondary-label: var(--gray-10);
+
+h1 {
+    font-size: 4rem !important;
+    color: #8fffab !important;
+}
+
+.total {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.container {
+    // margin-top: 5rem;
+    // padding: 3rem;
+    border-radius: $border-radius;
+
+    .success-msg {
+        color: $primary-color;
+        background: $color-green;
+        display: inline-block;
+        // width: 100%;
+        text-align: center;
+        padding: 0.5rem;
+        border-radius: $border-radius;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: $text-color;
+        margin-bottom: 2rem;
+    }
+
+    label,
+    input {
+        color: $text-color;
+    }
+
+    label {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    input {
+        border: 2px solid rgba($primary-color, 0.8);
+        border-radius: $border-radius;
+        padding: 0.5rem 1rem;
+        padding-left: 1rem;
+        font-size: 1rem;
+    }
+
+    .form-row {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+    }
+
+    button {
+        color: $color-white;
+        width: 100%;
+        font-size: 1.4rem;
+        background: $primary-color;
+        border-radius: $border-radius;
+        border: none;
+        cursor: pointer;
+        padding: 0.4rem 1.2rem;
+        margin-top: 0.5rem;
+
+        &:hover {
+            background: rgba($primary-color, 0.8);
+        }
+    }
+
+    .input-error {
+        border-color: $error-color;
+    }
+
+    .error {
+        color: $error-color;
+        font-size: 1rem;
+        margin-top: 0.3rem;
+    }
+
+    .disabled-btn {
+        cursor: not-allowed;
+        background: rgba($primary-color, 0.8);
+    }
+}
+#breathing-button {
+    width: 180px;
+    padding: 12px;
+    margin: 50px auto;
+    border: 1px solid #3cc8b4;
+    -webkit-animation: breathing 5s ease-out infinite normal;
+    animation: breathing 5s ease-out infinite normal;
+    font-family:'Lantinghei SC';
+    font-size: 16px;
+    background: #3cc8b4;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    border-radius: 2px;
+    text-align: center;    
+    }
+
+
+@-webkit-keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
