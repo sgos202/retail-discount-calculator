@@ -22,7 +22,7 @@ const Form = () => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
     };
-    
+
     // Handles Form Reset
     const handleReset = () => {
         setFormValues(initialValues);
@@ -43,23 +43,28 @@ const Form = () => {
     const calculateTotal = () => {
         const { items, price } = formValues;
         let totalValue = parseInt(items) * parseFloat(price);
-
-        // Check if total is eligible for discount
-        if (totalValue >= 1000) {
-            for (let i = discountRates.length - 1; i >= 0; i--) {
-                if (totalValue >= discountRates[i].orderValue) {
-                    totalValue *= (1 - discountRates[i].discountRate);
-                    setDiscountApplied(true);
-                    setDiscountRate(discountRates[i].discountRate);
-                    break; // Apply only the highest applicable discount
+    
+        // Check if totalValue is a valid number
+        if (!isNaN(totalValue)) {
+            // Check if total is eligible for discount
+            if (totalValue >= 1000) {
+                for (let i = discountRates.length - 1; i >= 0; i--) {
+                    if (totalValue >= discountRates[i].orderValue) {
+                        totalValue *= (1 - discountRates[i].discountRate);
+                        setDiscountApplied(true);
+                        setDiscountRate(discountRates[i].discountRate);
+                        break; // Apply only the highest applicable discount
+                    }
                 }
+            } else {
+                setDiscountApplied(false);
+                setDiscountRate(0);
             }
+    
+            setTotal(totalValue.toFixed(2));
         } else {
-            setDiscountApplied(false);
-            setDiscountRate(0);
+            setTotal(0);
         }
-
-        setTotal(totalValue.toFixed(2));
     };
 
     useEffect(() => {
@@ -117,9 +122,13 @@ const Form = () => {
 
                 <div className="">
                     <button type="submit" className="btn--primary" id="breathing-button">Calculate</button>
-                    {total !== 0 && <div className="total">Total: ${parseFloat(total).toLocaleString("en-US", { minimumFractionDigits: total % 1 === 0 ? 0 : 2 })}             {discountApplied && (
-                        <span> ({discountRate * 100}% saved)</span>
-                    )}</div>}
+                    {total !== 0 && !isNaN(total) && (
+                        <div className="total">Total: ${parseFloat(total).toLocaleString("en-US", { minimumFractionDigits: total % 1 === 0 ? 0 : 2 })}
+                            {discountApplied && (
+                                <span> ({discountRate * 100}% saved)</span>
+                            )}
+                        </div>
+                    )}
                     {Object.keys(formErrors).length === 0 && isSubmitting && (
                         <span className="success-msg">Form submitted successfully!</span>
                     )}
