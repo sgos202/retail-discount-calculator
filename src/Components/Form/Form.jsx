@@ -3,7 +3,10 @@ import React, { useState, useEffect } from "react";
 const Form = () => {
     const initialValues = { items: "", price: "", region: "" };
     const [formValues, setFormValues] = useState(initialValues);
-
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [total, setTotal] = useState(0);
+    
     const submit = () => {
         console.log(formValues);
     };
@@ -12,6 +15,13 @@ const Form = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
+    };
+
+    const handleReset = () => {
+        setFormValues(initialValues);
+        setFormErrors({});
+        setIsSubmitting(false);
+        setTotal(0);
     };
 
     return (
@@ -45,7 +55,7 @@ const Form = () => {
                         name="region"
                     />
                 </div>
-                <button type="reset" className="btn--secondary" onClick={'handleReset'}>Reset</button>
+                <button type="reset" className="btn--secondary" onClick={handleReset}>Reset</button>
                 <div className="">
                     <button type="submit" className="btn--primary" id="breathing-button">Calculate</button>
                 </div>
