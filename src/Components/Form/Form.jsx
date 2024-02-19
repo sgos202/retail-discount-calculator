@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import validateForm from "./formValidation"; //form validation handler
 import discountRates from "../../discountRates"; // Import discount rates
+import "./Form.scss";
 
 const Form = () => {
     const initialValues = { items: "", price: "", region: "" };
