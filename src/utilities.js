@@ -1,4 +1,5 @@
 import taxRates from "./taxRates"; // Import tax rates
+import discountRates from "./discountRates"; // Import discount rates
 
 const calculateTotal = (items, price, region) => {
   // Convert the inputs to numbers
@@ -19,16 +20,11 @@ const calculateTotal = (items, price, region) => {
 
   // Apply the discount rate based on the subtotal
   let discountRate = 0;
-  if (subtotal >= 50000) {
-    discountRate = 0.15;
-  } else if (subtotal >= 10000) {
-    discountRate = 0.1;
-  } else if (subtotal >= 7000) {
-    discountRate = 0.07;
-  } else if (subtotal >= 5000) {
-    discountRate = 0.05;
-  } else if (subtotal >= 1000) {
-    discountRate = 0.03;
+  for (let i = 0; i < discountRates.length; i++) {
+    if (subtotal >= discountRates[i].orderValue) {
+      discountRate = discountRates[i].discountRate;
+      break;
+    }
   }
 
   let discount = subtotal * discountRate;
